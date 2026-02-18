@@ -29,6 +29,10 @@ export async function MySidebar() {
             title: "My Orders",
             url: "/allorders",
         },
+        {
+            title: "Wish List",
+            url: "/wish-list",
+        },
     ] : [
         {
             title: "Login",
