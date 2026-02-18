@@ -4,6 +4,7 @@ import { authOptions } from "@/helpers/authOptions";
 import { cartResponse, ShippingAddress } from "@/interfaces/cartInterfaces";
 import { checkoutResponse } from "@/interfaces/checkoutInterfaces";
 import { getServerSession } from "next-auth";
+import { headers } from "next/headers";
 
 
 export async function getCart() {
@@ -37,8 +38,10 @@ export default async function addToCartAction(productId: string) {
 
 export async function checkoutAction(cartId: string | undefined , shippingAddress : ShippingAddress){
     const session = await getServerSession(authOptions);
+    const headerList = await headers();
+    const origin = headerList.get("origin") ?? "http://localhost:3000";
     if (session) {
-        const response = await fetch(process.env.API_URL + "orders/checkout-session/"+ cartId +"?url=" + process.env.BASE_URL , {
+        const response = await fetch(process.env.API_URL + "orders/checkout-session/"+ cartId +"?url=" + origin , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -22,7 +22,7 @@ export default async function productsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {products.map((product: product) =>
             <div key={product._id} className="">
-              <CardProduct product={product} initiallyInWishlist={wishlistProducts.some((item)=> item.id == product._id)}  />
+              <CardProduct product={product} initiallyInWishlist={wishlistProducts?.some((item)=> item.id == product._id)}  />
             </div>
           )}
         </div>

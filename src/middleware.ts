@@ -11,7 +11,8 @@ export default async function middleware(req: NextRequest) {
     if (protectedRoutes.includes(req.nextUrl.pathname)) {
         if (token) { return NextResponse.next(); }
         else {
-            const loginUrl = new URL("/login", process.env.BASE_URL);
+            const loginUrl = req.nextUrl.clone();
+            loginUrl.pathname ="/login";
             loginUrl.searchParams.set("callbackUrl", req.nextUrl.pathname);
             return NextResponse.redirect(loginUrl);
         }
@@ -19,7 +20,7 @@ export default async function middleware(req: NextRequest) {
 
     if (authRoutes.includes(req.nextUrl.pathname)) {
         if (token) {
-            return NextResponse.redirect(new URL("/", process.env.BASE_URL));
+            return NextResponse.redirect(new URL("/", req.url));
         } else {
             return NextResponse.next();
         }
