@@ -7,7 +7,7 @@ export default async function CategoryDeatails({ params }: { params: { brandId: 
   const { data: products }: productsData = await response.json();
   return (
     <>
-      <div className="bg-background container mx-auto px-6 pt-23 md:pt-25 pb-10 min-h-screen">
+      <div className="bg-background container mx-auto px-6 pt-23 md:pt-25 pb-10 relative min-h-screen">
         <h4 className="text-3xl text-accent-foreground font-bold mb-2">{products[0]?.brand?.name}</h4>
         {products.length > 0 && (<p className="text-muted-foreground mb-4.5">Explore our products from {products[0]?.brand?.name}. Find the perfect match for your style and needs!</p>)}
         {products && products.length > 0 ? (
