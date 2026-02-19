@@ -66,11 +66,11 @@ export function RegisterForm() {
     }
 
     const registerFields = [
-        { name: "name", label: "Name", type: "text", placeholder: "Ahmed" },
-        { name: "email", label: "E-mail", type: "email", placeholder: "tstskhaled@gmail.com" },
-        { name: "password", label: "Password", type: "password", placeholder: "Ahmed@123" },
-        { name: "rePassword", label: "Confirm Password", type: "password", placeholder: "Ahmed@123" },
-        { name: "phone", label: "Phone", type: "text", placeholder: "01018080246" },
+        { name: "name", label: "Name", type: "text", placeholder: "Enter your full name" },
+        { name: "email", label: "E-mail", type: "email", placeholder: "name@example.com" },
+        { name: "password", label: "Password", type: "password", placeholder: "Create a strong password" },
+        { name: "rePassword", label: "Confirm Password", type: "password", placeholder: "Confirm your password" },
+        { name: "phone", label: "Phone", type: "text", placeholder: "e.g. 01xxxxxxxxx" },
     ];
     return (
         <Card className="w-full max-w-xl mx-auto">
