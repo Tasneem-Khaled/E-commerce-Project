@@ -29,10 +29,6 @@ export async function MySidebar() {
             title: "My Orders",
             url: "/allorders",
         },
-        {
-            title: "Wish List",
-            url: "/wish-list",
-        },
     ] : [
         {
             title: "Login",
@@ -75,14 +71,6 @@ export async function MySidebar() {
                         url: "/brands",
                     },
                 ],
-            },
-            {
-                title: "Cart",
-                url: "/cart",
-                icon: (
-                    <ShoppingBagIcon
-                    />
-                )
             },
             {
                 title: "Account",
