@@ -25,7 +25,7 @@ export default function ShoppingBag( { cartCount ,userId }: { cartCount: number 
     return (
 
         <li><Link href={"/cart"} className="relative inline-flex items-center">
-            <ShoppingBagIcon className="size-5" />
+            <ShoppingBagIcon className="size-7 md:size-5" />
             {cartCountState > 0 &&
             <Badge className="absolute -top-1 -right-1 rounded-full text-white text-[10px] px-1 min-w-3 h-3 flex items-center justify-center">
                 {cartCountState}
