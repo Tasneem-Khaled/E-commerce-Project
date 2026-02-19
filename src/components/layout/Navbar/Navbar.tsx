@@ -66,7 +66,13 @@ export default async function Navbar() {
                             </NavigationMenuList>
                         </NavigationMenu>
                     </div>
-                    <SidebarTrigger className="md:hidden"></SidebarTrigger>
+                    <div className="flex items-center justify-center mt-2 md:hidden">
+                        <ul className="flex gap-3">
+                            <li><Link href={"/wish-list"}><Heart className="size-7" /></Link></li>
+                            <ShoppingBag  cartCount={data?.numOfCartItems || 0} userId={data?.data?.cartOwner || ""} />
+                            <li><SidebarTrigger /></li>
+                        </ul>      
+                    </div>
                 </div>
             </nav>
         </>
