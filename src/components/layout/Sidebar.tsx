@@ -90,7 +90,7 @@ export async function MySidebar() {
             <Sidebar collapsible="offcanvas">
                 <SidebarContent>
                     <SidebarGroup>
-                        <SidebarGroupLabel>Dashboard</SidebarGroupLabel>
+                        <SidebarGroupLabel>Menu</SidebarGroupLabel>
                         <SidebarMenu>
                             {data.navMain.map((item) => (
                                 <Collapsible
