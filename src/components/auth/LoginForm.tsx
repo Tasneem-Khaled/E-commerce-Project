@@ -48,15 +48,20 @@ export function LoginForm() {
         const result = await signIn("credentials", {
             email: data.email,
             password: data.password,
-            callbackUrl: callbackUrl,
-            redirect: true
-        })
-            toast.success("Logged in successfully!")
-            router.push(callbackUrl)
-        } catch (error) {
-            toast.error("Login failed. Please try again.")
+            redirect: false
+        });
+        if(result?.error){
+            toast.error("Invalid e-mail or password.");
+            return;
         }
-        setIsLoading(false);
+            toast.success("Logged in successfully!");
+            router.push(callbackUrl);
+        } catch (error) {
+            toast.error("Login failed. Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
+        
     }
     return (
         <Card className="w-full max-w-xl mx-auto">

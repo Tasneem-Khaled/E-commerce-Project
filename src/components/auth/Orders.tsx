@@ -18,28 +18,32 @@ import { formatPrice } from "@/app/(routes)/(public)/products/page";
 import { Root } from "@/interfaces/allOrdersInterfaces";
 import Link from "next/link";
 
-export default function Orders() {
+export default function Orders({ userId }: { userId?: string }) {
+    console.log("ORDERS COMPONENT RENDERED");
+
+    console.log("USER ID PROP:", userId);
     const [orders, setOrders] = useState<Root>([]);
     const [loading, setLoading] = useState(true);
 
     async function getOrders() {
+        if (!userId) {
+            setOrders([]);
+            setLoading(false);
+            return;
+        }
+
         try {
             setLoading(true);
 
-            const userId = localStorage.getItem("userId");
-            if (!userId) {
-                setOrders([]);
-                return;
-            }
-
             const response = await fetch(
-                process.env.NEXT_PUBLIC_API_URL + "orders/user/" + userId
+                process.env.NEXT_PUBLIC_API_URL + "orders/user/" + userId,
             );
+
             const data = await response.json();
-
-
             setOrders(data);
-
+        } catch (error) {
+            console.error(error);
+            setOrders([]);
         } finally {
             setLoading(false);
         }
@@ -47,7 +51,7 @@ export default function Orders() {
 
     useEffect(() => {
         getOrders();
-    }, []);
+    }, [userId]);
 
     if (loading) {
         return (
@@ -77,12 +81,9 @@ export default function Orders() {
                     <Button asChild className="mt-2 rounded-3xl">
                         <Link href="/products">Start Shopping</Link>
                     </Button>
-
-
                 </div>
             ) : (
                 <Table>
-
                     <TableHeader>
                         <TableRow>
                             <TableHead>Order ID</TableHead>
@@ -101,7 +102,9 @@ export default function Orders() {
                                 </TableCell>
 
                                 <TableCell>
-                                    {new Date(order.createdAt).toLocaleDateString("en-GB")}
+                                    {new Date(
+                                        order.createdAt,
+                                    ).toLocaleDateString("en-GB")}
                                 </TableCell>
 
                                 <TableCell>
@@ -116,7 +119,9 @@ export default function Orders() {
                                     ) : order.isPaid ? (
                                         <Badge variant="outline">Paid</Badge>
                                     ) : (
-                                        <Badge variant="destructive">Pending</Badge>
+                                        <Badge variant="destructive">
+                                            Pending
+                                        </Badge>
                                     )}
                                 </TableCell>
 

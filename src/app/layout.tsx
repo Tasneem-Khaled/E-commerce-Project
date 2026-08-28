@@ -7,6 +7,11 @@ import { MySidebar } from "@/components/layout/Sidebar";
 import Footer from "@/components/layout/Footer";
 import { Toaster } from "react-hot-toast";
 
+export const metadata: Metadata = {
+  title: "Shop Mart",
+  description: "E-commerce Project",
+};
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
